@@ -34,8 +34,7 @@ public class Notice extends Timestamped{
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	public Notice(NoticeRequestDto requestDto, User user) {
-		this.user = user;
+	public Notice(NoticeRequestDto requestDto) {
 		this.title = requestDto.getTitle();
 		this.contents = requestDto.getContents();
 	}

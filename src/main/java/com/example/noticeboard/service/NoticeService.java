@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.example.noticeboard.dto.NoticeRequestDto;
 import com.example.noticeboard.dto.NoticeResponseDto;
 import com.example.noticeboard.entity.Notice;
 import com.example.noticeboard.repository.NoticeRepository;
@@ -28,4 +30,13 @@ public class NoticeService {
 		return noticeResponseDtoList;
 	}
 
+
+	//게시글 작성
+	@Transactional
+	public NoticeResponseDto createNotice(NoticeRequestDto requestDto) {
+		Notice notice = new Notice(requestDto);
+		noticeRepository.save(notice);
+		NoticeResponseDto noticeResponseDto = new NoticeResponseDto(notice);
+		return noticeResponseDto;
+	}
 }
