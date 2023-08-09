@@ -39,4 +39,15 @@ public class NoticeService {
 		NoticeResponseDto noticeResponseDto = new NoticeResponseDto(notice);
 		return noticeResponseDto;
 	}
+
+	//특정 게시글 조회
+	@Transactional
+	public NoticeResponseDto getNotice(Long id) {
+		Notice notice = noticeRepository.findById(id).orElseThrow(
+			() -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
+		);
+
+		NoticeResponseDto noticeResponseDto = new NoticeResponseDto(notice);
+		return noticeResponseDto;
+	}
 }

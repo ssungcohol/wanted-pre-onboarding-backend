@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +32,12 @@ public class NoticeController {
 	@PostMapping("/api/noitce")
 	public NoticeResponseDto createNotice (@RequestBody NoticeRequestDto requestDto) {
 		return noticeService.createNotice(requestDto);
+	}
+
+	// 특정 게시글 조회
+	@GetMapping("/api/notice/{id}")
+	public NoticeResponseDto getNotice(@PathVariable Long id) {
+		return noticeService.getNotice(id);
 	}
 
 }
