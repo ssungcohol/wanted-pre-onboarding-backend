@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.noticeboard.dto.NoticeMessageDto;
 import com.example.noticeboard.dto.NoticeRequestDto;
 import com.example.noticeboard.dto.NoticeResponseDto;
 import com.example.noticeboard.service.NoticeService;
@@ -47,4 +49,9 @@ public class NoticeController {
 		return noticeService.updateNotice(id, requestDto);
 	}
 
+	// 게시글 삭제
+	@DeleteMapping("/api/notice/{id}")
+	public NoticeMessageDto deleteNotice(@PathVariable Long id,@RequestBody NoticeRequestDto requestDto) {
+		return noticeService.deleteNotice(id, requestDto);
+	}
 }
