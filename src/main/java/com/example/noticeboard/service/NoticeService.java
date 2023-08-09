@@ -50,4 +50,16 @@ public class NoticeService {
 		NoticeResponseDto noticeResponseDto = new NoticeResponseDto(notice);
 		return noticeResponseDto;
 	}
+
+	//게시글 수정
+	@Transactional
+	public NoticeResponseDto updateNotice(Long id, NoticeRequestDto requestDto) {
+		Notice notice = noticeRepository.findById(id).orElseThrow(
+			() -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다.")
+		);
+
+		notice.update(requestDto);
+
+		return new NoticeResponseDto(notice);
+	}
 }

@@ -39,5 +39,8 @@ public class Notice extends Timestamped{
 		this.contents = requestDto.getContents();
 	}
 
-
+	public void update(NoticeRequestDto requestDto) {
+		this.title = requestDto.getTitle();
+		this.contents = requestDto.getContents();
+	}
 }
