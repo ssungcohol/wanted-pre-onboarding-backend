@@ -27,16 +27,14 @@ public class Notice extends Timestamped{
 	@Column(nullable = false)
 	private String contents;
 
-	@Column(nullable = false)
-	private String password;
-
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	public Notice(NoticeRequestDto requestDto) {
+	public Notice(NoticeRequestDto requestDto, User user) {
 		this.title = requestDto.getTitle();
 		this.contents = requestDto.getContents();
+		this.user = user;
 	}
 
 	public void update(NoticeRequestDto requestDto) {

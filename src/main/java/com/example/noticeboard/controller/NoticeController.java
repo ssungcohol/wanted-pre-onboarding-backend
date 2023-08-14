@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.noticeboard.dto.NoticeMessageDto;
 import com.example.noticeboard.dto.NoticeRequestDto;
 import com.example.noticeboard.dto.NoticeResponseDto;
+import com.example.noticeboard.entity.User;
 import com.example.noticeboard.service.NoticeService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,14 +28,14 @@ public class NoticeController {
 
 	//게시글 조회
 	@GetMapping("/api/notices")
-	public List<NoticeResponseDto> getNotice() {
-		return noticeService.getNotice();
+	public List<NoticeResponseDto> getNotices() {
+		return noticeService.getNotices();
 	}
 
 	//게시글 작성
-	@PostMapping("/api/noitce")
-	public NoticeResponseDto createNotice (@RequestBody NoticeRequestDto requestDto) {
-		return noticeService.createNotice(requestDto);
+	@PostMapping("/api/notice")
+	public NoticeResponseDto createNotice (@RequestBody NoticeRequestDto requestDto, HttpServletRequest request) {
+		return noticeService.createNotice(requestDto, request);
 	}
 
 	// 특정 게시글 조회
@@ -45,13 +46,13 @@ public class NoticeController {
 
 	// 게시글 수정
 	@PutMapping("/api/notice/{id}")
-	public NoticeResponseDto updateNotice(@PathVariable Long id, @RequestBody NoticeRequestDto requestDto) {
-		return noticeService.updateNotice(id, requestDto);
+	public NoticeResponseDto updateNotice(@PathVariable Long id, @RequestBody NoticeRequestDto requestDto, HttpServletRequest request) {
+		return noticeService.updateNotice(id, requestDto, request);
 	}
 
 	// 게시글 삭제
 	@DeleteMapping("/api/notice/{id}")
-	public NoticeMessageDto deleteNotice(@PathVariable Long id,@RequestBody NoticeRequestDto requestDto) {
-		return noticeService.deleteNotice(id, requestDto);
+	public NoticeMessageDto deleteNotice(@PathVariable Long id, @RequestBody NoticeRequestDto requestDto, HttpServletRequest request) {
+		return noticeService.deleteNotice(id, requestDto, request);
 	}
 }
