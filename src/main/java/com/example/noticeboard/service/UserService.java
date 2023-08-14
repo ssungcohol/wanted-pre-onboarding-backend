@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,8 @@ public class UserService {
 
 	private final JwtUtil jwtUtil;
 
+	private final PasswordEncoder bCryptPasswordEncoder;
+
 	@Transactional
 	public void signup(SignupRequestDto signupRequestDto) {
 		String email = signupRequestDto.getEmail();
@@ -35,6 +38,7 @@ public class UserService {
 		}
 
 		User user = new User(email, password);
+		user.hashPassword(bCryptPasswordEncoder);
 		userRepository.save(user);
 	}
 

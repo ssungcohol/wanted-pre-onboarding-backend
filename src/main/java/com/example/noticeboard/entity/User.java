@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -26,5 +28,14 @@ public class User {
 	public User(String email, String password) {
 		this.email = email;
 		this.password = password;
+	}
+
+	public User hashPassword(PasswordEncoder passwordEncoder) {
+		this.password = passwordEncoder.encode(this.password);
+		return this;
+	}
+
+	public boolean checkPassword(String plainPassword, PasswordEncoder passwordEncoder) {
+		return passwordEncoder.matches(plainPassword, this.password);
 	}
 }
