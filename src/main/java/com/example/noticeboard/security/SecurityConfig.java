@@ -19,9 +19,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.cors().disable()
 			.csrf().disable() // post 방식 값 전송 시 token을 사용하는 보안 해제
-			// .authorizeRequests()
-			// .antMatchers("/", "/api/user/signup").permitAll()
-			// .anyRequest().authenticated();
 			.formLogin().disable()
 			.headers().frameOptions().disable();
 	}
