@@ -1,15 +1,22 @@
 # wanted-pre-onboarding-backend
 
-지원자 : 조성재
+## 지원자 : 조성재
 
-애플리케이션 실행 방법 - (Postman 사용)
+## 애플리케이션 실행 방법 - (Postman 사용)
 
 1. application.properties의 spring.datasource.url을 사용하고자 하는 DB주소를 입력해준다. (MySQL 기준)
-   ex_ spring.datasource.url=jdbc:mysql://{DB 엔드포인트}:{포트넘버}/{DB이름}
+
+   ex)
+
+    spring.datasource.url=jdbc:mysql://{DB 엔드포인트}:{포트넘버}/{DB이름}
 
 2. DB의 username과 password를 입력해준다.
-   ex_ spring.datasource.username={DB 생성 시 설정한 이름}
-       spring.datasource.password={DB 생성 시 설정한 비밀번호}
+
+   ex) 
+
+      spring.datasource.username={DB 생성 시 설정한 이름}
+
+      spring.datasource.password={DB 생성 시 설정한 비밀번호}
 
 3. 어플리케이션을 실행해준다.
 
@@ -18,7 +25,7 @@
     - Form Data 타입으로하여 Key 값 = email, password 과 Value 값 = 설정하고자 하는 email과 password 입력하여 회원가입을 진행한다.
     - 성공 시 임의로 넣어놓은 HTML 화면으로 이동, 실패 시에는 해당 문제가 되는 message를 표출
     - email 기입 시에는 올바른 email 형식을 기입하고, 비밀번호는 8자 이상의 비밀번호를 사용
-    - ex_ test@test.com / 12345678
+    - ex) test@test.com / 12345678
 
 5. 로그인
     - POST Mapping 사용, Endpont : localhost:8080/api/user/login 입력
@@ -53,7 +60,7 @@
     - 게시물 삭제 성공 시 '삭제 성공' message 표출
     - 게시물 삭제 실패 시 '삭제 실패' message 표출
 
-데이터베이스 테이블 구조
+## 데이터베이스 테이블 구조
 
 1. user Table
 
@@ -71,8 +78,24 @@
 |2|2023-08-15 21:14:10.853634|2023-08-15 21:14:10.853634|title_2|content_2|게시물 작성 user id|
 |3|2023-08-15 21:14:10.853634|2023-08-15 21:14:10.853634|title_3|content_3|게시물 작성 user id|
 
-구현한 API의 동작 데모 영상 링크
+## 구현한 API의 동작 데모 영상 링크
 
-구현 방법 및 이유 간략 설명
+https://youtu.be/vQrFvFr-TP4
 
-API 명세
+## 구현 방법 및 이유 간략 설명
+
+비밀번호 암호화
+ - Spring Secutiry 프레임 워크에서 제공하는 BCryptPasswordEncoder 클래스 사용
+ - 이유 : Spring 기반의 애플리케이션의 보안에 관한 스프링 하위의 프레임으로써 인증과 권한에 대한 대부분을 담당하고 있기 때문
+
+페이지네이션(Pagination)
+ - JPA에서 제공하는 Pageable이라는 객체를 사용
+ - 이유 : 간단하게 매개변수에 Pageable을 추가하면 되고, 이미 사용한 JpaRepository가 PagingAndSortingRepository를 구현하고 있기 때문
+
+데이터 저장소 (MySQL)
+ - AWS에서 제공하는 RDS를 사용해 MySQL 8.0 버전을 사용
+ - 사용자가 사용하기 쉽게 자동화가 되어있고, 앤드포인트를 활용한 DB의 편한 접근성과 백업, 보안 등의 기능이 많기 때문
+
+## API 명세
+
+![Notice_api_2](https://github.com/ssungcohol/wanted-pre-onboarding-backend/assets/119986573/c17c10a8-b1f9-4cfb-b5fa-0a8db7fc701c)
