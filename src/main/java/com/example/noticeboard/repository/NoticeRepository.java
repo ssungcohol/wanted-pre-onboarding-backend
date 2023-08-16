@@ -2,11 +2,15 @@ package com.example.noticeboard.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.noticeboard.entity.Notice;
 
 public interface NoticeRepository extends JpaRepository<Notice, Long> {
 
-	List<Notice> findAllByOrderByModifiedAtDesc();
+	// List<Notice> findAllByOrderByModifiedAtDesc(Pageable pageable);
+
+	Page<Notice> findAllByOrderByModifiedAtDesc(Pageable pageable);
 }
